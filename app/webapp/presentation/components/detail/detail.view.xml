@@ -1,0 +1,61 @@
+<mvc:View 
+	controllerName="de.jlabs..presentation.components.detail.detail" 
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:semantic="sap.m.semantic" 
+	xmlns:layout="sap.ui.layout" 
+	xmlns:f="sap.f"
+>
+	<f:DynamicPage showFooter="true">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="{i18n>product}: {detail>/product/productName}"/>
+				</f:heading>
+				<f:expandedContent>
+					<Label text="{i18n>productId}: {detail>/product/productId}"/>
+				</f:expandedContent>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader pinnable="false">
+				<layout:HorizontalLayout >
+					<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						<ObjectAttribute title="{i18n>quantityPerUnit}" text="{detail>/product/quantityPerUnit}"/>
+						<ObjectAttribute title="{i18n>reorderLevel}" text="{detail>/product/reorderLevel}"/>
+						<ObjectAttribute title="{i18n>discontinued}" text="{detail>/product/discontinued}"/>
+					</layout:VerticalLayout>
+					<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						<ObjectAttribute title="{i18n>unitPrice}" text="{detail>/product/unitPrice}"/>
+						<ObjectAttribute title="{i18n>unitsInStock}" text="{detail>/product/unitsInStock}"/>
+						<ObjectAttribute title="{i18n>unitsOnOrder}" text="{detail>/product/unitsOnOrder}"/>
+					</layout:VerticalLayout>
+				</layout:HorizontalLayout>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<IconTabBar>
+				<items>
+                    <IconTabFilter text="{i18n>supplier}" key="supplier" icon="sap-icon://supplier">
+                        <mvc:XMLView viewName="de.jlabs..presentation.components.detail.supplier-detail.supplier-detail"/>
+                    </IconTabFilter>					
+					<IconTabSeparator/>
+					<IconTabFilter text="{i18n>category}" key="category" icon="sap-icon://group">
+						<mvc:XMLView viewName="de.jlabs..presentation.components.detail.category-detail.category-detail"/>
+					</IconTabFilter>
+					<IconTabSeparator/>
+					<IconTabFilter text="Dummy" key="sample" icon="sap-icon://activity-2"/>
+				</items>
+			</IconTabBar>
+		</f:content> 
+		<f:footer>
+			<OverflowToolbar>
+				<Button text="{i18n>cancel}" press="handleClose"/>
+				<ToolbarSpacer/>
+				<Button type="Accept" text="{i18n>accept}"/>
+				<Button type="Reject" text="{i18n>reject}"/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

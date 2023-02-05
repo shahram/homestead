@@ -1,0 +1,86 @@
+<mvc:View 
+    controllerName="de.jlabs..presentation.components.list.list" 
+    height="100%"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:semantic="sap.m.semantic"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:core="sap.ui.core">
+    <semantic:MasterPage showFooter="false" title="{i18n>appTitle}">
+        <semantic:content>
+            <fb:FilterBar 
+                id="products-filter"
+                clear="clearFilters"
+                useToolbar="false"
+                showClearOnFB="true"
+                showFilterConfiguration="false"
+                showGoOnFB="true"
+                search="applyFilters">
+                <fb:filterGroupItems>
+                    <fb:FilterGroupItem groupName="product" name="product" label="{i18n>productName}" visibleInFilterBar="true">
+                        <fb:control>
+                            <Input id="product-filter" type="Text" submit="applyFilters" placeholder="{i18n>searchByProductName}"/>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                </fb:filterGroupItems>
+                <fb:filterGroupItems>
+                    <fb:FilterGroupItem groupName="supplier" name="supplier" label="{i18n>supplierName}" visibleInFilterBar="true">
+                        <fb:control>
+                            <MultiComboBox id="supplier-filter" selectionChange="applyFilters" placeholder="{i18n>selectASupplier}" items="{ path: '/Suppliers' }">
+                                <core:Item key="{SupplierID}" text="{ContactName}"/>
+                            </MultiComboBox>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                </fb:filterGroupItems>
+            </fb:FilterBar>
+            <Table 
+                id="products-list"
+                items="{ path: '/Products' }"
+                class="sapUiContentPadding"
+                mode="MultiSelect"
+                width="auto"
+                fixedLayout="false"
+                growing="true"
+                growingThreshold="20"
+                growingScrollToLoad="true"
+                enableBusyIndicator="true">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="{i18n>products}" level="H2"/>
+                        <ToolbarSpacer/>
+                        <Button icon="sap-icon://sort" press="handleSort" text="{i18n>sort}"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="{i18n>productName}" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="{i18n>quantityPerUnit}" maxLines="1"/>
+                    </Column> 
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="{i18n>unitPrice}" maxLines="1"/>
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <Text text="{i18n>unitsInStock}" maxLines="1"/>
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <Text text="{i18n>unitsOnOrder}" maxLines="1"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Navigation" press="handleDetailNavigation">
+                        <cells>
+                            <Text text="{ProductName}" />
+                            <Text text="{QuantityPerUnit}" />
+                            <Text text="{UnitPrice}" />
+                            <Text text="{UnitsInStock}" />
+                            <Text text="{UnitsOnOrder}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </semantic:content>
+    </semantic:MasterPage>
+</mvc:View>

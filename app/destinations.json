@@ -1,0 +1,9 @@
+{
+    "sapui5": {
+        "Description": "SAPUI5 Resources",
+        "uri": "https://sapui5.hana.ondemand.com/"
+    },
+    "NORTHWIND": {
+        "uri": "https://services.odata.org/v2/"
+    }
+}

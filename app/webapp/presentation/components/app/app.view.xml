@@ -1,0 +1,19 @@
+<mvc:View
+	controllerName="de.jlabs..presentation.components.app.app"
+	displayBlock="true"
+	height="100%"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.f">
+	<App
+		id="app"
+		class="app"
+    >
+		<f:FlexibleColumnLayout
+			id="layout"
+			layout="{app>/layout}"
+			backgroundDesign="Translucent"
+        >
+		</f:FlexibleColumnLayout>
+	</App>
+</mvc:View>
